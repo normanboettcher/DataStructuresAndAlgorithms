@@ -115,7 +115,7 @@ public class Exercises {
 	    if(str.length()==1) {
 	        return Character.toString(Character.toUpperCase(chr));
 	    }
-	    if((str.substring(str.length()-2, str.length()-1).equals(" "))) {
+	    if((str.substring(str.length() -2, str.length()-1).equals(" "))) {
 	        chr = Character.toUpperCase(chr);
 	    }
 	    return capitalizeEachWord(str.substring(0,str.length()-1))+ Character.toString(chr);
