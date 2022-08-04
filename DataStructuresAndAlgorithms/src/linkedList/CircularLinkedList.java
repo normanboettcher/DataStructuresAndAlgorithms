@@ -1,7 +1,5 @@
 package linkedList;
 
-import sun.awt.X11.XSystemTrayPeer;
-
 /**
  * @author norman
  */
