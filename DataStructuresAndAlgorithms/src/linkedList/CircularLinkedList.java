@@ -1,5 +1,10 @@
 package linkedList;
 
+import sun.awt.X11.XSystemTrayPeer;
+
+/**
+ * @author norman
+ */
 public class CircularLinkedList {
 	
 	private Node head;
@@ -78,7 +83,52 @@ public class CircularLinkedList {
 		System.out.println("Node " + nodeValue + " not found");
 		return false;
 	}
-	
+
+	/**
+	 * deletion method.
+	 * @param location
+	 */
+	private void delete(int location) {
+		//check if parameter and list is valid
+		if(head == null) {
+			System.out.println("List has no values");
+			return;
+		} else {
+			//check if node is first node
+			if (location == 0) {
+				head = head.reference;
+				tail.reference = head;
+				size--;
+				if(size == 0) {
+					tail = null;
+					head.reference = null;
+					head = null;
+				}
+			//check if node is last node
+			} else if(location >= size) {
+				Node tmpNode = head;
+				for(int i = 0; i < size - 1; i++) {
+					tmpNode = tmpNode.reference;
+				}
+				if(tmpNode == head) {
+					head.reference = null;
+					size = Integer.parseInt(null);
+					head = null;
+					return;
+				}
+				tmpNode.reference = head;
+				tail = tmpNode;
+				size--;
+			} else {
+				Node tmpNode = head;
+				for(int i = 0; i < location - 1; i++) {
+					tmpNode = tmpNode.reference;
+				}
+				tmpNode.reference = tmpNode.reference.reference;
+				size--;
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		CircularLinkedList csll = new CircularLinkedList();
@@ -92,5 +142,7 @@ public class CircularLinkedList {
 		csll.traverse();
 		csll.search(5);
 		csll.search(100);
+		csll.delete(0);
+		csll.traverse();
 	}
 }
