@@ -1,10 +1,16 @@
 package linkedList;
 
+import com.sun.org.slf4j.internal.LoggerFactory;
+
+import java.util.logging.Logger;
+
+import static java.util.logging.Logger.getLogger;
+
 /**
  * @author norman
  */
 public class CircularLinkedList {
-	
+	final static Logger LOG = Logger.getLogger(CircularLinkedList.class.getName());
 	private Node head;
 	private Node tail;
 	private int size;
@@ -127,7 +133,17 @@ public class CircularLinkedList {
 			}
 		}
 	}
-	
+
+	private void deleteComplete() {
+		if(head == null) {
+			System.out.println("No Object found");
+		} else {
+			head = null;
+			tail.reference = null;
+			tail = null;
+			LOG.info("Circular Singly Linked List deleted");
+		}
+	}
 	public static void main(String[] args) {
 		CircularLinkedList csll = new CircularLinkedList();
 		csll.createCSLL(5);
@@ -142,5 +158,6 @@ public class CircularLinkedList {
 		csll.search(100);
 		csll.delete(0);
 		csll.traverse();
+		csll.deleteComplete();
 	}
 }
